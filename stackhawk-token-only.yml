@@ -1,0 +1,15 @@
+# Authentication with token only - token extraction handled externally
+app:
+  authentication:
+    loggedInIndicator: ".*message.*"
+    loggedOutIndicator: ".*detail.*"
+    external:
+      type: TOKEN
+      value: ${AUTH_TOKEN}
+    tokenAuthorization:
+      type: HEADER
+      value: Authorization
+      tokenType: Bearer
+    testPath:
+      path: /kaakaww/
+      success: ".*200.*"

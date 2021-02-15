@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  hawkling:
+    build:
+      context: .
+    image: hawkling
+    ports:
+    - 8000:8000

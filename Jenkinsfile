@@ -28,6 +28,7 @@ pipeline {
 //         echo "${env.AUTH_TOKEN}"
         sh '''
           docker run -v ${WORKSPACE}:/hawk:rw -t \
+            --network host \
             -e API_KEY \
             -e AUTH_TOKEN \
             -e NO_COLOR="true" \

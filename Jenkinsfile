@@ -25,14 +25,14 @@ pipeline {
                      )}"""
       }
       steps {
-        echo "${env.AUTH_TOKEN}"
-//         sh '''
-//           docker run -v ${WORKSPACE}:/hawk:rw -t \
-//             -e API_KEY \
-//             -e AUTH_TOKEN \
-//             -e NO_COLOR="true" \
-//             stackhawk/hawkscan
-//         '''
+//         echo "${env.AUTH_TOKEN}"
+        sh '''
+          docker run -v ${WORKSPACE}:/hawk:rw -t \
+            -e API_KEY \
+            -e AUTH_TOKEN \
+            -e NO_COLOR="true" \
+            stackhawk/hawkscan stackhawk.yml stackhawk-token-only.yml
+        '''
       }
     }
   }

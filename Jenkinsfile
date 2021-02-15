@@ -8,6 +8,7 @@ pipeline {
     }
     stage ("Launch the Hawkling") {
       steps {
+        sh 'docker-compose down'
         sh 'docker-compose up --build --detach'
       }
     }

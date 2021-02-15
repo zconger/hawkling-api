@@ -35,5 +35,10 @@ pipeline {
         '''
       }
     }
+    stage ("Land the Hawkling") {
+      steps {
+        sh 'docker-compose down'
+      }
+    }
   }
 }

@@ -1,23 +1,24 @@
 pipeline {
   agent any
+  triggers { cron('*/5 * * * *') }
   stages {
     stage ("Checkout code") {
       steps {
         checkout scm
       }
     }
-    stage ("Launch the Hawkling") {
+    stage ("Launch Hawkling") {
       steps {
         sh 'docker-compose down'
         sh 'docker-compose up --build --detach'
       }
     }
-    stage ("Pull HawkScan Image") {
+    stage ("Pull HawkScan") {
       steps {
         sh 'docker pull stackhawk/hawkscan'
       }
     }
-    stage ("Run HawkScan Test") {
+    stage ("Run HawkScan") {
       environment {
         API_KEY = credentials('HAWK_API_KEY')
         AUTH_TOKEN = """${sh(
@@ -36,7 +37,7 @@ pipeline {
         '''
       }
     }
-    stage ("Land the Hawkling") {
+    stage ("Stop Hawkling") {
       steps {
         sh 'docker-compose down'
       }

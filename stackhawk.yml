@@ -1,5 +1,5 @@
 # No authentication configuration
 app:
   applicationId: 3e62ae93-7381-4f52-89e3-d91091003eb4
-  env: Twilio
+  env: ${APP_ENV:Twilio}
   host: http://localhost:8000

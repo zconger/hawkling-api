@@ -1,0 +1,27 @@
+steps:
+  - command: "docker-compose down"
+    label: ":eagle: Hawkling down for a clean start"
+
+  - wait
+
+  - command: "docker-compose up --build --detach"
+    label: ":eagle: Hawkling up"
+
+  - command: "docker pull stackhawk/hawkscan"
+    label: ":eagle: Pull the latest HawkScan image"
+
+  - wait
+
+  - label: ":eagle: Run HawkScan"
+    key: hawkscan
+    command: |
+      docker run -v $(pwd):/hawk:rw -t \
+        --network host \
+        -e API_KEY \
+        -e APP_ENV="Hawking Chamber"
+        stackhawk/hawkscan stackhawk.yml stackhawk-password-token.yml
+
+  - wait
+
+  - label: ":eagle: Hawkling down"
+    command: docker-compose down

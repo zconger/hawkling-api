@@ -26,7 +26,6 @@ pipeline {
                      )}"""
       }
       steps {
-//         echo "${env.AUTH_TOKEN}"
         sh '''
           docker run -v ${WORKSPACE}:/hawk:rw -t \
             --network host \

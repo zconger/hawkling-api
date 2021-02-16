@@ -18,7 +18,7 @@ steps:
       docker run -v $(pwd):/hawk:rw -t \
         --network host \
         -e API_KEY \
-        -e APP_ENV="Hawking Chamber"
+        -e APP_ENV="Hawking Chamber" \
         stackhawk/hawkscan stackhawk.yml stackhawk-password-token.yml
 
   - wait
